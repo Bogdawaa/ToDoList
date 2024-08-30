@@ -13,12 +13,16 @@ final class MainPresenter: MainPresenterProtocol {
     var interactor: MainInteractorInputProtocol?
     var router: MainRouterProtocol?
     
-    func viewDidLoad() {
+    func viewWillAppear() {
         interactor?.getTodoList()
     }
     
-    func addTodoItem(_ todoItem: TodoItem) {
-        interactor?.addTodoItem(todoItem)
+    func editTodoItemClicked(todoItem: TodoItem) {
+        router?.showEditItemScene(for: todoItem)
+    }
+    
+    func addTodoItemClicked() {
+        router?.showAddNewItemScene()
     }
     
     func removeTodoItem(_ todoItem: TodoItem) {

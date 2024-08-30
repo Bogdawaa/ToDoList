@@ -5,45 +5,39 @@
 //  Created by Bogdan Fartdinov on 29.08.2024.
 //
 
-import Foundation
+import UIKit
 
 protocol EditItemViewProtocol: AnyObject {
-    var presenter: MainPresenterProtocol? { get set }
-    func showTodoList(_ todoList: [TodoItem])
-    func showErrorAllert(_ errorMessage: String)
+    var presenter: EditItemPresenterProtocol? { get set }
+    func showTodoItem(_ todoItem: TodoItem)
 }
 
 protocol EditItemPresenterProtocol: AnyObject {
-    var view: MainViewProtocol? { get set }
-    var interactor: MainInteractorInputProtocol? { get set}
-    var router: MainRouterProtocol? { get set }
+    var view: EditItemViewProtocol? { get set }
+    var interactor: EditItemInteractorInputProtocol? { get set}
+    var router: EditItemRouterProtocol? { get set }
     
-//    func configureView()
     func viewDidLoad()
-    func addTodoItemClicked()
-    func removeTodoItem(_ todoItem: TodoItem)
+    func editAndSaveTodoItem(title: String, description: String?, isCompleted: Bool)
 }
 
 protocol EditItemInteractorInputProtocol: AnyObject {
     // presenter -> interactor
-    var presenter: MainInteractorOutputProtocol? { get set }
-    func getTodoList()
-    func addTodoItem(_ todoItem: TodoItem)
-    func removeTodoItem(_ todoItem: TodoItem)
+    var presenter: EditItemInteractorOutputProtocol? { get set }
+    var todoItem: TodoItem? { get set }
+    
+    func editAndSaveTodoItem(title: String, description: String?, isCompleted: Bool)
 }
 
-protocol EditItemnteractorOutputProtocol: AnyObject {
+protocol EditItemInteractorOutputProtocol: AnyObject {
     // interactor -> presenter
-    func didGetTodoList(_ todoList: [TodoItem])
-    func didAddTodoItem(_ todoItem: TodoItem)
-    func didRemoveTodoItem(_ todoItem: TodoItem)
-    func onError(errorMessage: String)
+    func didEditAndSaveTodoItem(_ todoItem: TodoItem)
 }
 
 protocol EditItemRouterProtocol: AnyObject {
-    func showAddNewItemScene()
+    func navigateBackToMainView(from view: EditItemViewProtocol)
 }
 
 protocol EditItemConfiguratorProtocol: AnyObject {
-    func configure(with viewController: MainViewController)
+    func configure(viewController: EditItemViewController, with todoItem: TodoItem)
 }

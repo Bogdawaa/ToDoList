@@ -30,11 +30,19 @@ final class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter?.viewDidLoad()
         applyConstraints()
+        
+        view.backgroundColor = .systemBackground
         
         tableView.dataSource = self
         tableView.delegate = self
+        
+        setupNav()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter?.viewWillAppear()
     }
 
     private func applyConstraints() {
@@ -46,6 +54,19 @@ final class MainViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
+    }
+    
+    private func setupNav() {
+        title = "Todos App"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        navigationItem.rightBarButtonItem = addButton
+    }
+    
+    @objc
+    private func addButtonTapped(_ sender: UIBarButtonItem) {
+//        presenter?.editTodoItemClicked(todoItem: todosList[1])
+        
     }
 }
 
@@ -76,6 +97,11 @@ extension MainViewController: UITableViewDataSource {
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 130
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        presenter?.editTodoItemClicked(todoItem: todosList[indexPath.row])
     }
 }
 

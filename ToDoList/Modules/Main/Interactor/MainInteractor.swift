@@ -15,7 +15,10 @@ final class MainInteractor: MainInteractorInputProtocol {
     
     var networkClient = NetworkService() // DI
 
-    private var isFirstLaunch: Bool = false // временное свойство. заменить на сохранялку в user defaults
+    private var isFirstAppLaunch: Bool {
+        UserDefaults.standard.getIsFirstAppLaunchFlag()
+    }
+    
     private var todoListCD: [TodoItem] = []
     
     func addTodoItem(_ todoItem: TodoItem) {
@@ -29,15 +32,15 @@ final class MainInteractor: MainInteractorInputProtocol {
     }
     
     func getTodoList() {
-        if isFirstLaunch {
+        if !isFirstAppLaunch {
             fetchFromNetworkAPI()
         } else {
+            print("fetch from core data")
             todoListCD = todoItemStore.fetchItems()
             presenter?.didGetTodoList(todoListCD)
         }
     }
     
-    // should be called on first app launch
     private func fetchFromNetworkAPI() {
         networkClient.fetchTasks { [weak self] result in
             guard let self = self else { return }
@@ -48,6 +51,7 @@ final class MainInteractor: MainInteractorInputProtocol {
                     todoListCD.append(item)
                     todoItemStore.addItem(item)
                 }
+                UserDefaults.standard.setIsFirstAppLaunchFlag(value: true)
                 presenter?.didGetTodoList(self.todoListCD)
             case .failure(let error):
                 print("error: \(error.localizedDescription)")

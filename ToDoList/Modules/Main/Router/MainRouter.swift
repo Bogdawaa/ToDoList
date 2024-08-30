@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit // ?
 
 class MainRouter: MainRouterProtocol {
     
@@ -15,7 +16,14 @@ class MainRouter: MainRouterProtocol {
         self.viewController = viewController
     }
     
-    func closeCurrentViewController() {
-        viewController?.dismiss(animated: true)
+    func showAddNewItemScene() {
+        // todo
+    }
+    
+    func showEditItemScene(for todoItem: TodoItem) {
+        let editVC = EditItemViewController()
+        let editConfigurator: EditItemConfiguratorProtocol = EditItemConfigurator()
+        editConfigurator.configure(viewController: editVC, with: todoItem)
+        viewController?.navigationController?.pushViewController(editVC, animated: true)
     }
 }

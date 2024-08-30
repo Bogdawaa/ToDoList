@@ -19,8 +19,9 @@ protocol MainPresenterProtocol: AnyObject {
     var router: MainRouterProtocol? { get set }
     
 //    func configureView()
-    func viewDidLoad()
-    func addTodoItem(_ todoItem: TodoItem)
+    func viewWillAppear()
+    func addTodoItemClicked()
+    func editTodoItemClicked(todoItem: TodoItem)
     func removeTodoItem(_ todoItem: TodoItem)
 }
 
@@ -41,7 +42,8 @@ protocol MainInteractorOutputProtocol: AnyObject {
 }
 
 protocol MainRouterProtocol: AnyObject {
-    func closeCurrentViewController()
+    func showAddNewItemScene()
+    func showEditItemScene(for todoItem: TodoItem)
 }
 
 protocol MainConfiguratorProtocol: AnyObject {
