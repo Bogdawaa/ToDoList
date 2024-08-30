@@ -32,6 +32,12 @@
 		F01605592C80FBB700ED663F /* EditItemInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01605582C80FBB700ED663F /* EditItemInteractor.swift */; };
 		F016055B2C80FBC700ED663F /* EditItemConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F016055A2C80FBC700ED663F /* EditItemConfigurator.swift */; };
 		F016055E2C80FBDB00ED663F /* EditItemPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F016055D2C80FBDB00ED663F /* EditItemPresenter.swift */; };
+		F01605622C8255C600ED663F /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01605612C8255C600ED663F /* AddItemViewController.swift */; };
+		F01605682C825E5200ED663F /* AddItemPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01605672C825E5200ED663F /* AddItemPresenter.swift */; };
+		F016056A2C825EA700ED663F /* AddItemProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01605692C825EA700ED663F /* AddItemProtocols.swift */; };
+		F016056C2C825F2C00ED663F /* AddItemInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F016056B2C825F2C00ED663F /* AddItemInteractor.swift */; };
+		F016056E2C825F8C00ED663F /* AddItemRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F016056D2C825F8C00ED663F /* AddItemRouter.swift */; };
+		F01605702C8279AD00ED663F /* AddItemConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F016056F2C8279AD00ED663F /* AddItemConfigurator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +87,12 @@
 		F01605582C80FBB700ED663F /* EditItemInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemInteractor.swift; sourceTree = "<group>"; };
 		F016055A2C80FBC700ED663F /* EditItemConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemConfigurator.swift; sourceTree = "<group>"; };
 		F016055D2C80FBDB00ED663F /* EditItemPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemPresenter.swift; sourceTree = "<group>"; };
+		F01605612C8255C600ED663F /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
+		F01605672C825E5200ED663F /* AddItemPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemPresenter.swift; sourceTree = "<group>"; };
+		F01605692C825EA700ED663F /* AddItemProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemProtocols.swift; sourceTree = "<group>"; };
+		F016056B2C825F2C00ED663F /* AddItemInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemInteractor.swift; sourceTree = "<group>"; };
+		F016056D2C825F8C00ED663F /* AddItemRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemRouter.swift; sourceTree = "<group>"; };
+		F016056F2C8279AD00ED663F /* AddItemConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemConfigurator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,6 +264,7 @@
 		F01605462C80E7A900ED663F /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				F016055F2C82557100ED663F /* AddItem */,
 				F016054D2C80FA6C00ED663F /* EditItem */,
 				F01605222C78F24E00ED663F /* Main */,
 			);
@@ -317,6 +330,59 @@
 				F016055D2C80FBDB00ED663F /* EditItemPresenter.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		F016055F2C82557100ED663F /* AddItem */ = {
+			isa = PBXGroup;
+			children = (
+				F016056F2C8279AD00ED663F /* AddItemConfigurator.swift */,
+				F01605662C825A9200ED663F /* Router */,
+				F01605652C825A8900ED663F /* Interactor */,
+				F01605642C825A4D00ED663F /* Protocols */,
+				F01605632C825A3A00ED663F /* Presenter */,
+				F01605602C8255A800ED663F /* View */,
+			);
+			path = AddItem;
+			sourceTree = "<group>";
+		};
+		F01605602C8255A800ED663F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F01605612C8255C600ED663F /* AddItemViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F01605632C825A3A00ED663F /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				F01605672C825E5200ED663F /* AddItemPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		F01605642C825A4D00ED663F /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				F01605692C825EA700ED663F /* AddItemProtocols.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		F01605652C825A8900ED663F /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				F016056B2C825F2C00ED663F /* AddItemInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		F01605662C825A9200ED663F /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				F016056D2C825F8C00ED663F /* AddItemRouter.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -454,14 +520,20 @@
 				F01604F02C78E2AB00ED663F /* SceneDelegate.swift in Sources */,
 				F01605592C80FBB700ED663F /* EditItemInteractor.swift in Sources */,
 				F016052E2C78FDF100ED663F /* MainPresenter.swift in Sources */,
+				F016056C2C825F2C00ED663F /* AddItemInteractor.swift in Sources */,
 				F016054C2C80ED4F00ED663F /* UserDefaults+Extensions.swift in Sources */,
+				F016056A2C825EA700ED663F /* AddItemProtocols.swift in Sources */,
 				F01605372C791FED00ED663F /* NetworkService.swift in Sources */,
 				F016055E2C80FBDB00ED663F /* EditItemPresenter.swift in Sources */,
 				F01605392C7A66F400ED663F /* TodoItem.swift in Sources */,
+				F01605682C825E5200ED663F /* AddItemPresenter.swift in Sources */,
 				F016054F2C80FAE100ED663F /* EditItemProtocols.swift in Sources */,
+				F01605702C8279AD00ED663F /* AddItemConfigurator.swift in Sources */,
 				F01604F82C78E2AB00ED663F /* ToDoList.xcdatamodeld in Sources */,
+				F01605622C8255C600ED663F /* AddItemViewController.swift in Sources */,
 				F01605562C80FBA000ED663F /* EditItemRouter.swift in Sources */,
 				F01605242C78F44600ED663F /* MainConfigurator.swift in Sources */,
+				F016056E2C825F8C00ED663F /* AddItemRouter.swift in Sources */,
 				F01605322C79007500ED663F /* MainProtocols.swift in Sources */,
 				F01605512C80FB6A00ED663F /* EditItemViewController.swift in Sources */,
 				F01605432C7B5D6100ED663F /* TodoItemTableViewCell.swift in Sources */,

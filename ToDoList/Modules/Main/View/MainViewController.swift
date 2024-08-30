@@ -66,7 +66,7 @@ final class MainViewController: UIViewController {
     @objc
     private func addButtonTapped(_ sender: UIBarButtonItem) {
 //        presenter?.editTodoItemClicked(todoItem: todosList[1])
-        
+        presenter?.addTodoItemClicked()
     }
 }
 

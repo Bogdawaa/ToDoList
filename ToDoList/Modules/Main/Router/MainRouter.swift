@@ -18,6 +18,10 @@ class MainRouter: MainRouterProtocol {
     
     func showAddNewItemScene() {
         // todo
+        let addVC = AddItemViewController()
+        let addConfigurator: AddItemConfigurator = AddItemConfigurator()
+        addConfigurator.configure(viewController: addVC)
+        viewController?.navigationController?.pushViewController(addVC, animated: true)
     }
     
     func showEditItemScene(for todoItem: TodoItem) {
