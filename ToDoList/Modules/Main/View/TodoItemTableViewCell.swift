@@ -78,13 +78,13 @@ final class TodoItemTableViewCell: UITableViewCell {
         if let description = todoItem.description {
             descriptionLabel.text = description
         } else {
-            descriptionLabel.text = ""
+            descriptionLabel.text = "Описание отсутствует"
         }
         
         if let date = todoItem.createdAt {
             createdAtLabel.text = "Создано: \(CellDateFormatter.shared.dateString(date: date))"
         } else {
-            createdAtLabel.text = ""
+            createdAtLabel.text = "Создано: н/д"
         }
         
         if todoItem.completed {
