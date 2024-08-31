@@ -8,12 +8,12 @@
 import Foundation
 
 struct TodoItem: Codable {
-    let id: Int
+    let id: Int64
     let title: String
     let description: String?
     let createdAt: Date?
     let completed: Bool
-    let userId: Int
+    let userId: Int64
     
     private enum CodingKeys: String, CodingKey {
         case id
