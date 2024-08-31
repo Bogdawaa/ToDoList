@@ -4,17 +4,17 @@
 //
 //  Created by Bogdan Fartdinov on 26.08.2024.
 //
+
 import UIKit
 import CoreData
 
 protocol TodoItemStoreProtocol {
     func addItem(_ todoItem:  TodoItem)
-    func update(todoItemID: Int, with title: String, description: String?, isCompleted: Bool)
+    func update(todoItemID: Int64, with title: String, description: String?, isCompleted: Bool)
     func delete(_ todoItem:  TodoItem)
-    func fetchItem(with itemId: Int) -> TodoItem?
+    func fetchItem(with itemId: Int64) -> TodoItem?
     func fetchItems() -> [TodoItem]
 }
-
 
 final class TodoItemStore: NSObject, TodoItemStoreProtocol {
     
@@ -40,12 +40,11 @@ final class TodoItemStore: NSObject, TodoItemStoreProtocol {
         saveContext(with: context)
     }
     
-    func update(todoItemID: Int, with title: String, description: String?, isCompleted: Bool) {
-        let todoItem =  fetchItemCD(with: todoItemID)
-        guard let todoItem = todoItem else { return }
-        todoItem.title = title
-        todoItem.itemDescription = description
-        todoItem.completed = isCompleted
+    func update(todoItemID: Int64, with title: String, description: String?, isCompleted: Bool) {
+        guard let todoItemCD =  fetchItemCD(with: todoItemID) else { return }
+        todoItemCD.title = title
+        todoItemCD.itemDescription = description
+        todoItemCD.completed = isCompleted
         saveContext(with: context)
     }
     
@@ -55,7 +54,7 @@ final class TodoItemStore: NSObject, TodoItemStoreProtocol {
         saveContext(with: context)
     }
     
-    func fetchItem(with itemId: Int) -> TodoItem? {
+    func fetchItem(with itemId: Int64) -> TodoItem? {
         guard let todoItemCD = fetchItemCD(with: itemId) else { return nil }
         return convertToObject(from: todoItemCD)
     }
@@ -65,30 +64,26 @@ final class TodoItemStore: NSObject, TodoItemStoreProtocol {
         let todoItemsCD = (try? context.fetch(request)) ?? []
         var todoItems: [TodoItem] = []
         for item in todoItemsCD {
-            #warning("should not be optional title")
             let todo = convertToObject(from: item)
             todoItems.append(todo)
         }
         return todoItems
     }
     
-    private func fetchItemCD(with itemId: Int) -> TodoItemCD? {
+    private func fetchItemCD(with itemId: Int64) -> TodoItemCD? {
         let request = TodoItemCD.fetchRequest()
-        request.returnsObjectsAsFaults = false
-        let predicate = NSPredicate(format: "id = %d", itemId)
-        request.predicate = predicate
-        let todoItem = try? context.fetch(request).first
-        return todoItem
+        guard let todoItemCD = (try? context.fetch(request).first(where: {$0.id == itemId })) else { return nil }
+        return todoItemCD
     }
     
     private func convertToObject(from itemCD: TodoItemCD) -> TodoItem {
         return TodoItem(
-            id: Int(itemCD.id),
+            id: itemCD.id,
             title: itemCD.title ?? "",
             description: itemCD.itemDescription,
             createdAt: itemCD.createdAt,
             completed: itemCD.completed,
-            userId: Int(itemCD.userId)
+            userId: itemCD.userId
         )
     }
     
