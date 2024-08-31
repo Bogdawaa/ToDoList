@@ -23,15 +23,16 @@ final class TodoItemTableViewCell: UITableViewCell {
     
     private lazy var titleLabel: UILabel = {
         let view = UILabel()
-        view.numberOfLines = 0
+        view.numberOfLines = 2
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     private lazy var descriptionLabel: UILabel = {
         let view = UILabel()
-        view.numberOfLines = 0
+        view.numberOfLines = 2
         view.textColor = .systemGray
+        view.font = .systemFont(ofSize: 12)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -39,6 +40,7 @@ final class TodoItemTableViewCell: UITableViewCell {
     private lazy var createdAtLabel: UILabel = {
         let view = UILabel()
         view.textColor = .systemGray
+        view.font = .systemFont(ofSize: 12)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -60,12 +62,6 @@ final class TodoItemTableViewCell: UITableViewCell {
         return view
     }()
     
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//        setupConstraints()
-//    }
-
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -81,12 +77,14 @@ final class TodoItemTableViewCell: UITableViewCell {
     
         if let description = todoItem.description {
             descriptionLabel.text = description
+        } else {
+            descriptionLabel.text = ""
         }
         
         if let date = todoItem.createdAt {
-            let formatter = DateFormatter() // убрать
-            formatter.dateStyle = .short
-            createdAtLabel.text = formatter.string(from: Date())
+            createdAtLabel.text = "Создано: \(CellDateFormatter.shared.dateString(date: date))"
+        } else {
+            createdAtLabel.text = ""
         }
         
         if todoItem.completed {
@@ -111,7 +109,7 @@ final class TodoItemTableViewCell: UITableViewCell {
             titleContainerView.topAnchor.constraint(equalTo: self.topAnchor, constant: 8),
             titleContainerView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
             titleContainerView.trailingAnchor.constraint(equalTo: completedContainerView.leadingAnchor, constant: -16),
-
+            
             titleLabel.leadingAnchor.constraint(equalTo: titleContainerView.leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: titleContainerView.trailingAnchor),
 
