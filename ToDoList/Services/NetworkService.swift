@@ -14,8 +14,11 @@ struct NetworkService {
         case dataError
     }
     
+    static let shared = NetworkService()
+    
+    private init() {}
+    
     func fetchTasks(completion: @escaping (Result<Todos, Error>) -> Void) {
-        #warning("вынести url в отдельную переменную или структуру")
         guard let url = URL(string: "https://dummyjson.com/todos") else {
             completion(.failure(NetworkServiceError.badURL))
             return
@@ -34,7 +37,6 @@ struct NetworkService {
             
             do {
                 let result = try JSONDecoder().decode(Todos.self, from: data)
-                print("result: \(result)")
                 completion(.success(result))
             } catch {
                 completion(.failure(error))
