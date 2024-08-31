@@ -22,7 +22,6 @@ final class MainViewController: UIViewController {
         didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
-                print("count: \(self.todosList.count)")
             }
         }
     }
@@ -65,7 +64,6 @@ final class MainViewController: UIViewController {
     
     @objc
     private func addButtonTapped(_ sender: UIBarButtonItem) {
-//        presenter?.editTodoItemClicked(todoItem: todosList[1])
         presenter?.addTodoItemClicked()
     }
 }
@@ -96,7 +94,7 @@ extension MainViewController: UITableViewDataSource {
 
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 130
+        return 110
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -111,6 +109,16 @@ extension MainViewController: MainViewProtocol {
     }
     
     func showErrorAllert(_ errorMessage: String) {
-        //
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Ошибка", message: errorMessage, preferredStyle: .alert)
+            let actionOk = UIAlertAction(title: "Ok", style: .default, handler: nil)
+            let actionRetry = UIAlertAction(title: "Повторить", style: .default, handler: { [weak self] _ in
+                guard let self = self else { return }
+                self.presenter?.viewWillAppear()
+            })
+            alert.addAction(actionOk)
+            alert.addAction(actionRetry)
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }

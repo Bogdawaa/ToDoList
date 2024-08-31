@@ -11,19 +11,14 @@ final class MainInteractor: MainInteractorInputProtocol {
     
     weak var presenter: MainInteractorOutputProtocol?
     
-    let todoItemStore: TodoItemStoreProtocol = TodoItemStore() // TODO: - delegate  + DI ??
+    let todoItemStore: TodoItemStoreProtocol = TodoItemStore()
     
-    var networkClient = NetworkService() // DI
+    private var networkClient = NetworkService.shared
 
-    private var isFirstAppLaunch: Bool {
-        UserDefaults.standard.getIsFirstAppLaunchFlag()
-    }
-    
     private var todoListCD: [TodoItem] = []
     
-    func addTodoItem(_ todoItem: TodoItem) {
-        todoItemStore.addItem(todoItem)
-        presenter?.didAddTodoItem(todoItem)
+    private var isFirstAppLaunch: Bool {
+        UserDefaults.standard.getIsFirstAppLaunchFlag()
     }
     
     func removeTodoItem(_ todoItem: TodoItem) {
@@ -35,7 +30,6 @@ final class MainInteractor: MainInteractorInputProtocol {
         if !isFirstAppLaunch {
             fetchFromNetworkAPI()
         } else {
-            print("fetch from core data")
             todoListCD = todoItemStore.fetchItems()
             presenter?.didGetTodoList(todoListCD)
         }
@@ -54,7 +48,7 @@ final class MainInteractor: MainInteractorInputProtocol {
                 UserDefaults.standard.setIsFirstAppLaunchFlag(value: true)
                 presenter?.didGetTodoList(self.todoListCD)
             case .failure(let error):
-                print("error: \(error.localizedDescription)")
+                presenter?.onError(errorMessage: error.localizedDescription)
             }
         }
     }

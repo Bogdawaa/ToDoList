@@ -38,6 +38,7 @@
 		F016056C2C825F2C00ED663F /* AddItemInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F016056B2C825F2C00ED663F /* AddItemInteractor.swift */; };
 		F016056E2C825F8C00ED663F /* AddItemRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F016056D2C825F8C00ED663F /* AddItemRouter.swift */; };
 		F01605702C8279AD00ED663F /* AddItemConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F016056F2C8279AD00ED663F /* AddItemConfigurator.swift */; };
+		F01605722C836FCC00ED663F /* CellDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01605712C836FCC00ED663F /* CellDateFormatter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,7 @@
 		F016056B2C825F2C00ED663F /* AddItemInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemInteractor.swift; sourceTree = "<group>"; };
 		F016056D2C825F8C00ED663F /* AddItemRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemRouter.swift; sourceTree = "<group>"; };
 		F016056F2C8279AD00ED663F /* AddItemConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemConfigurator.swift; sourceTree = "<group>"; };
+		F01605712C836FCC00ED663F /* CellDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellDateFormatter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -275,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				F016054B2C80ED4F00ED663F /* UserDefaults+Extensions.swift */,
+				F01605712C836FCC00ED663F /* CellDateFormatter.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -515,6 +518,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F01605722C836FCC00ED663F /* CellDateFormatter.swift in Sources */,
 				F01604F22C78E2AB00ED663F /* MainViewController.swift in Sources */,
 				F01604EE2C78E2AB00ED663F /* AppDelegate.swift in Sources */,
 				F01604F02C78E2AB00ED663F /* SceneDelegate.swift in Sources */,

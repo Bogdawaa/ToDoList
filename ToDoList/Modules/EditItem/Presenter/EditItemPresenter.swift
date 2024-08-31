@@ -29,7 +29,7 @@ final class EditItemPresenter: EditItemPresenterProtocol {
 }
 
 extension EditItemPresenter: EditItemInteractorOutputProtocol {
-    func didEditAndSaveTodoItem(_ todoItem: TodoItem) {
+    func didEditAndSaveTodoItem() {
         if let view = view {
             router?.navigateBackToMainView(from: view)
         }

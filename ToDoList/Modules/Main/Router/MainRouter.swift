@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import UIKit // ?
+import UIKit
 
 class MainRouter: MainRouterProtocol {
     
@@ -17,7 +17,6 @@ class MainRouter: MainRouterProtocol {
     }
     
     func showAddNewItemScene() {
-        // todo
         let addVC = AddItemViewController()
         let addConfigurator: AddItemConfigurator = AddItemConfigurator()
         addConfigurator.configure(viewController: addVC)

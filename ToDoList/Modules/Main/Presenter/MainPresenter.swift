@@ -36,10 +36,6 @@ extension MainPresenter: MainInteractorOutputProtocol {
         view?.showTodoList(todoList)
     }
     
-    func didAddTodoItem(_ todoItem: TodoItem) {
-        interactor?.getTodoList()
-    }
-    
     func didRemoveTodoItem(_ todoItem: TodoItem) {
         interactor?.getTodoList()
     }

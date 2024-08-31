@@ -29,14 +29,12 @@ protocol MainInteractorInputProtocol: AnyObject {
     // presenter -> interactor
     var presenter: MainInteractorOutputProtocol? { get set }
     func getTodoList()
-    func addTodoItem(_ todoItem: TodoItem)
     func removeTodoItem(_ todoItem: TodoItem)
 }
 
 protocol MainInteractorOutputProtocol: AnyObject {
     // interactor -> presenter
     func didGetTodoList(_ todoList: [TodoItem])
-    func didAddTodoItem(_ todoItem: TodoItem)
     func didRemoveTodoItem(_ todoItem: TodoItem)
     func onError(errorMessage: String)
 }

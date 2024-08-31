@@ -11,16 +11,16 @@ final class AddItemInteractor: AddItemInteractorInputProtocol {
     
     var presenter: AddItemInteractorOutputProtocol?
     
-    let todoItemStore: TodoItemStoreProtocol = TodoItemStore() // TODO: - delegate  + DI ??
+    let todoItemStore: TodoItemStoreProtocol = TodoItemStore()
     
     func editAndSaveTodoItem(title: String, description: String?) {
         let item = TodoItem(
-            id: Int.random(in: 0...Int.max),
+            id: Int64.random(in: 0...Int64.max),
             title: title,
             description: description,
             createdAt: Date(),
             completed: false,
-            userId: Int.random(in: 0...Int.max)
+            userId: Int64.random(in: 0...Int64.max)
         )
         todoItemStore.addItem(item)
         presenter?.didEditAndSaveTodoItem(item)

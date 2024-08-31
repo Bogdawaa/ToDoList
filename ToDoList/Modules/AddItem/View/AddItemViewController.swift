@@ -28,6 +28,7 @@ final class AddItemViewController: UIViewController, AddItemViewProtocol {
     
     private lazy var titleTextField: UITextField = {
         let view = UITextField()
+        view.delegate = self
         view.borderStyle = .roundedRect
         view.placeholder = "Введите название задачи"
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -43,6 +44,7 @@ final class AddItemViewController: UIViewController, AddItemViewProtocol {
     
     private lazy var descriptionTextView: UITextView = {
         let view = UITextView()
+        view.delegate = self
         view.layer.borderColor = UIColor.lightGray.cgColor
         view.layer.borderWidth = 0.5
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -89,13 +91,28 @@ final class AddItemViewController: UIViewController, AddItemViewProtocol {
         ])
     }
     
-    #warning("title not optional")
     @objc
     func saveButtonTapped() {
         presenter?.editAndSaveTodoItem(
-            title: titleTextField.text ?? "",
+            title: titleTextField.text ?? "Без названия",
             description: descriptionTextView.text
         )
     }
 }
 
+extension AddItemViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let text = (textField.text ?? "") as NSString
+        let newText = text.replacingCharacters(in: range, with: string)
+        let textLength = newText.count
+        return textLength < 50
+    }
+}
+
+extension AddItemViewController: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
+        let textLength = newText.count
+        return textLength < 150
+    }
+}

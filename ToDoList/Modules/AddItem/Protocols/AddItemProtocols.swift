@@ -22,8 +22,6 @@ protocol AddItemPresenterProtocol: AnyObject {
 protocol AddItemInteractorInputProtocol: AnyObject {
     // presenter -> interactor
     var presenter: AddItemInteractorOutputProtocol? { get set }
-//    var todoItem: TodoItem? { get set }
-    
     func editAndSaveTodoItem(title: String, description: String?)
 }
 

@@ -31,7 +31,7 @@ protocol EditItemInteractorInputProtocol: AnyObject {
 
 protocol EditItemInteractorOutputProtocol: AnyObject {
     // interactor -> presenter
-    func didEditAndSaveTodoItem(_ todoItem: TodoItem)
+    func didEditAndSaveTodoItem()
 }
 
 protocol EditItemRouterProtocol: AnyObject {
